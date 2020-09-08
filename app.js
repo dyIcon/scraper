@@ -65,10 +65,7 @@ async function run(url) {
         var newTitles = titleList.map(item => {
             const url = item.href;
             var title = item.text; 
-
-            console.log("这是新的打印");
-            console.log(title);
-            var pattern = new RegExp("\/download");
+            var pattern = new RegExp("\/download"); // 下载链接不加入queue
             if(crawData[title]){
                 if(crawData[title] !== url){
                     title = source.name + " - " + title;
@@ -105,7 +102,7 @@ function getTitles() {
     document.cookie = 'DDS_token:0GWPqhhtmb04vp0pCZZvPo5Jyj8JMtqYZjKPhJnXo7y-P-eNsCDgETh8g05FLLKXjcyP1yKO4k1dbM9ewT9Taw0Ol4nkw1-GIjPCHlLBsq_9AbL3XsFBpVrYJGu7HjBA-C9a-ts2dzNcqTPq0LxQjsWc8Sl-c677MJ6akM-wCYjNe1wXTORT5a1yilvrK1y4MMiVI2CycDsZVcWzADpAS-zN1HNRtJuc9sxK40DKO-jqeiNgS0NK30S5_cFxGF_F';
     var titles = $('a');
     var title = titles.map((i, a) => ({
-        text: a.innerHTML,
+        text: a.innerText,
         href: a.href || ''
     })).get();
     console.log(title);
